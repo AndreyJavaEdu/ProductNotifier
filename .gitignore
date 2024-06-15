@@ -1,0 +1,11 @@
+/ProductNotifier.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/jarRepositories.xml
+/.idea/encodings.xml
+/ProductMicroservice/target/
+/ProductMicroservice/.mvn/
+/ProductMicroservice/.idea/
+/EmailNotificationMicroservice/.idea/
+/EmailNotificationMicroservice/.mvn/
+/.idea/
