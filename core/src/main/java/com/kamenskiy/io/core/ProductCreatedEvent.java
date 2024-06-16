@@ -1,4 +1,4 @@
-package com.kamenskiy.io.productmicroservice.service.event;
+package com.kamenskiy.io.core;
 
 import java.math.BigDecimal;
 

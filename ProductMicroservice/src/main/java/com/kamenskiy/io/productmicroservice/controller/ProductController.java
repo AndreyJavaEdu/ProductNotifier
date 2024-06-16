@@ -28,10 +28,11 @@ public class ProductController {
         String productId = null;
         try {
             productId = productService.createProduct(createProductDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(productId);
+
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorMessage(new Date(), e.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(productId);
     }
 }

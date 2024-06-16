@@ -1,7 +1,8 @@
 package com.kamenskiy.io.productmicroservice.service;
 
+import com.kamenskiy.io.core.ProductCreatedEvent;
 import com.kamenskiy.io.productmicroservice.service.dto.CreateProductDto;
-import com.kamenskiy.io.productmicroservice.service.event.ProductCreatedEvent;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -29,8 +30,6 @@ public class ProductServiceImpl implements ProductService {
                 productDto.getQuantity());
         SendResult<String, ProductCreatedEvent> result = kafkaTemplate
                 .send("product-created-events-topic", productId, event).get();
-        LOGGER.info(String.valueOf(kafkaTemplate
-                .send("product-created-events-topic", productId, event)));
         LOGGER.info("topic: {}", result.getRecordMetadata().topic());
         LOGGER.info("partition: {}", result.getRecordMetadata().partition());
         LOGGER.info("Offset: {}", result.getRecordMetadata().offset());
