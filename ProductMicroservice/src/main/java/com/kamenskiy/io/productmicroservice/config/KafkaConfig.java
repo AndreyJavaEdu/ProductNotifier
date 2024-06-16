@@ -1,6 +1,6 @@
 package com.kamenskiy.io.productmicroservice.config;
 
-import com.kamenskiy.io.productmicroservice.service.event.ProductCreatedEvent;
+import com.kamenskiy.io.core.ProductCreatedEvent;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;

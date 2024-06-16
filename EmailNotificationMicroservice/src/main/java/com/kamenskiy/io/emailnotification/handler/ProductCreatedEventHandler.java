@@ -1,5 +1,6 @@
 package com.kamenskiy.io.emailnotification.handler;
 
+import com.kamenskiy.io.core.ProductCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaHandler;
