@@ -11,3 +11,5 @@
 /.idea/
 /core/.idea/
 /core/.mvn/
+/mockservice/.gitignore
+/mockservice/.mvn/
