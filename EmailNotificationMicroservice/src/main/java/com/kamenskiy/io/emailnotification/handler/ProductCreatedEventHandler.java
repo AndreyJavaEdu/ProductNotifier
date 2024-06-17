@@ -28,7 +28,7 @@ public class ProductCreatedEventHandler {
     @KafkaHandler
     public void handle(ProductCreatedEvent productCreatedEvent) {
         LOGGER.info("Received product created event: {}", productCreatedEvent.getTitle());
-        String url = "http://localhost:8090";
+        String url = "http://localhost:8090/response/200";
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
             if (response.getStatusCode().value() == HttpStatus.OK.value()) {
