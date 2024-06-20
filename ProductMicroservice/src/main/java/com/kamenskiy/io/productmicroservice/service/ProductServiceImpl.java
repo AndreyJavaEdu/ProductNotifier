@@ -3,6 +3,7 @@ package com.kamenskiy.io.productmicroservice.service;
 import com.kamenskiy.io.core.ProductCreatedEvent;
 import com.kamenskiy.io.productmicroservice.service.dto.CreateProductDto;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -25,11 +26,15 @@ public class ProductServiceImpl implements ProductService {
     public String createProduct(CreateProductDto productDto) throws ExecutionException, InterruptedException {
         //TODO save to DB
         String productId = UUID.randomUUID().toString();
-
         ProductCreatedEvent event = new ProductCreatedEvent(productId, productDto.getTitle(), productDto.getPrice(),
                 productDto.getQuantity());
+
+        ProducerRecord<String, ProductCreatedEvent> record = new ProducerRecord<>("product-created-events-topic",
+                productId, event);
+        record.headers().add("messageId", UUID.randomUUID().toString().getBytes());
+
         SendResult<String, ProductCreatedEvent> result = kafkaTemplate
-                .send("product-created-events-topic", productId, event).get();
+                .send(record).get();
         LOGGER.info("topic: {}", result.getRecordMetadata().topic());
         LOGGER.info("partition: {}", result.getRecordMetadata().partition());
         LOGGER.info("Offset: {}", result.getRecordMetadata().offset());
